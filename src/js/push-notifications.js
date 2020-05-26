@@ -43,6 +43,8 @@ export default () => {
     }
     // Lägga in en komponent och lyssna på click event
     // godkänner push notiser på sidan
+
+        //  seeing " Uncaught TypeError: Cannot read property 'addEventListener' of null " in console, Will look into at a later date!
         document.querySelector('#test').addEventListener('click', (event) => {
         event.srcElement.disabled = true;
 

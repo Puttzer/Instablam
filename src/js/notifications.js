@@ -1,3 +1,6 @@
+
+
+// Not needed? Come back to later!
 function requestNotificationPermission() {
     Notification.requestPermission().then((response) => {
         console.log(response);

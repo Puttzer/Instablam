@@ -1,50 +1,72 @@
-const staticCacheName = 'static-files'
-const assets = [
-    '/',
-    '/index.html',
-]
+let cacheName = 'InstablamTime';
 
-self.addEventListener('install', evt => {
-    console.log(self);
-    self.skipWaiting();
-    console.log('SW installed at: ', new Date().toLocaleTimeString());
-    evt.waitUntil(
-        caches.open(staticCacheName).then(cache => {
-            cache.addAll(assets)
+var contentToCache = [
+  '/offline.html',
+];
+
+self.addEventListener('install', (e) => {
+    console.log('[Service Worker] Installing');
+
+    self.skipWaiting()
+
+    e.waitUntil(
+        caches.open(cacheName).then((cache) => {
+            console.log('[Service Worker] Caching static files');
+            return cache.addAll(contentToCache);
         })
+    );
+});
+
+self.addEventListener('activate', (e) => {
+    console.log('[Service Worker] Activated');
+
+    // Deletes old cache
+    const cacheWhitelist = [cacheName];
+
+    e.waitUntil(
+      caches.keys().then(nameOfCaches => {
+        return Promise.all(
+          nameOfCaches.map(title => {
+            if(cacheWhitelist.indexOf(title) === -1) {
+              return caches.delete(title)
+            }
+          })
+        )
+      })
     )
 });
 
-self.addEventListener('activate', event => {
-    self.skipWaiting();
-    console.log('SW activated at: ', new Date().toLocaleTimeString());
-});
+self.addEventListener('fetch', event => {
+  // console.log('Fetch event for ', event.request.url);
+  event.respondWith(
+    caches.match(event.request)
+    .then(response => {
+      // Returns cached site
+      if (response) {
+        // console.log('Found ', event.request.url, ' in cache');
+        return response;
+      }
 
-self.addEventListener('fetch', evt => {
-    console.log(evt.request.url);
-    if (!navigator.onLine) {
-        evt.respondWith(
-            caches.match(evt.request).then(cacheRes => {
-                return cacheRes || fetch(evt.request)
-            })
-        )
-    } else {
-        console.log('Online!');
-    }
-});
+      //Fetch new
+      // console.log('Network request for ', event.request.url);
+      return fetch(event.request)
 
-//Lyssnar efter push notiser
-self.addEventListener('push', (event) => {
-    console.log('push')
-    if (event.data) {
-        createNotification(event.data.text());
-    }
-})
 
-//Skapar en notifikation med Web notifications API
-const createNotification = (text) => {
-    self.registration.showNotification('Detta är en push notise', {
-        body: text,
-        icon: '../images/icons/shakespeare-apple-touch-icon.png'
+      // Saves the new fetched site in cache
+      .then(response => {
+        return caches.open(cacheName).then(cache => {
+          
+          cache.put(event.request.url, response.clone());
+          return response;
+        });
+      });
+
+      // Returns custom offline.html if page is not cached
+    }).catch(error => {
+
+      console.log('[Service worker] ', error)
+      return caches.match('offline.html')
+
     })
-}
+  );
+});

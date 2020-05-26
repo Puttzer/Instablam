@@ -1,20 +1,12 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Home />
+    <div id="nav">
+      <H1>TEST
+
+      </H1>
+    </div>
   </div>
 </template>
-
-<script>
-import Home from './components/Home.vue'
-
-export default {
-  name: 'App',
-  components: {
-    Home
-  }
-}
-</script>
 
 <style lang="scss">
 #app {
@@ -23,6 +15,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+  h1{
+    // If font not working. shit fix later i suppose
+    font-family: 'Fira Code';
+  }
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>
