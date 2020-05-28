@@ -4,6 +4,10 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+Vue.prototype.online = window.navigator.onLine;
+Vue.prototype.createObjectURL = window.URL.createObjectURL;
+Vue.prototype.Caman = window.Caman;
+
 new Vue({
   store,
   render: h => h(App)

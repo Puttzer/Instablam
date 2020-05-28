@@ -1,12 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <Home/>
       <H1>TEST
 
       </H1>
-    </div>
   </div>
 </template>
+
+<script>
+import Home from "./components/Home.vue";
+
+export default {
+  name: "App",
+  components: {
+    Home
+  }
+};
+</script>
 
 <style lang="scss">
 #app {
