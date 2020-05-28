@@ -43,7 +43,7 @@ self.addEventListener("fetch", (evt) => {
 
 //Listen to pushnotices
 self.addEventListener("push", (event) => {
-  console.log("push");
+  console.log("Push notification Sent!");
   if (event.data) {
     createNotification(event.data.text());
   }
