@@ -7,11 +7,11 @@ function requestNotificationPermission() {
     });
 }
 
-function createNotification(insult) {
+function createNotification(arbiter) {
     const icon = 'images/icons/shakespeare-apple-touch-icon.png';
-    const play = insult.play;
+    const play = arbiter.play;
 
-    const notification = new Notification('New insult', { body: play, icon: icon });
+    const notification = new Notification('New Pushnotification', { body: play, icon: icon });
 
     notification.addEventListener('click', () => {
         window.open('https://localhost:0443/');
