@@ -4,6 +4,8 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+
+// Camanstuff insert here!
 Vue.prototype.online = window.navigator.onLine;
 Vue.prototype.createObjectURL = window.URL.createObjectURL;
 Vue.prototype.Caman = window.Caman;

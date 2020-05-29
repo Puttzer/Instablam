@@ -1,6 +1,8 @@
 const staticCacheName = "static-files";
 const assets = ["/", "/index.html", "/offline.html"];
-// Installing SW
+
+
+// This part installs the service worker
 self.addEventListener("install", (evt) => {
   console.log(self);
   self.skipWaiting();
@@ -12,12 +14,12 @@ self.addEventListener("install", (evt) => {
     })
   );
 });
-// activating SW
+// Activating the Service worker
 self.addEventListener("activate", (event) => {
   self.skipWaiting();
   console.log("SW activated at: ", new Date().toLocaleTimeString());
 });
-// Fetching SW
+// Fetching the Service Worker
 self.addEventListener("fetch", (evt) => {
   console.log(evt.request.url);
   if (!navigator.onLine) {
@@ -41,7 +43,7 @@ self.addEventListener("fetch", (evt) => {
   }
 });
 
-//Listen to pushnotices
+//LListening for Pushnotifications and logs out if successfully sent
 self.addEventListener("push", (event) => {
   console.log("Push notification Sent!");
   if (event.data) {
@@ -49,7 +51,7 @@ self.addEventListener("push", (event) => {
   }
 });
 
-// Creat a notification with notification API
+// Creates a notification with the notification API
 const createNotification = (text) => {
   self.registration.showNotification("You got a push!", {
     body: text,
@@ -57,6 +59,8 @@ const createNotification = (text) => {
   });
 };
 
+// Hey scotty!
+//Caches man!
 function updateCache(request) {
   return fetch(request).then((response) => {
     if (response) {
