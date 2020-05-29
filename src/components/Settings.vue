@@ -50,7 +50,7 @@
       />
     </div>
     <div class="filter">
-      <label for="exposure">Exposure</label>id="brightness"
+      <label for="exposure">Exposure</label>
       <input
         type="range"
         min="-100"
@@ -129,7 +129,11 @@ export default {
   padding: 1rem;
   label {
     margin: auto;
-    padding: 1.5rem;
+    padding: 1.2rem;
+    color: #2EE59D;
+    font-family: 'Fira Code';
+    font-size: 1.17em
+
   }
   filter {
     width: 200px;
@@ -143,8 +147,6 @@ export default {
     width: 500px;
     justify-items: center;
   }
-  label {
-    font-size: 30px;
-  }
+  
 }
 </style>

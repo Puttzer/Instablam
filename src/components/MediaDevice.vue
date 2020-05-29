@@ -1,14 +1,17 @@
 <template>
   <div>
     <div class="button" >
-      <button type="button" id="test" class="butt" >Accenpt the use of push notifications</button>
-      <button @click="captureImage" class="butt">Take a photo of yourself!</button>
-      <button @click="clearButton" class="butt">clear all filters</button>
-      <button @click="downloadImg" class="butt" id="download">Download image </button>
+      <button type="button" id="test" class="butt" >Notifications On/Off</button>
+      <button @click="captureImage" class="butt">Take a Photo!</button>
+      <button @click="clearButton" class="butt">Clear applied filters</button>
+      <button @click="imageDown" class="butt" >Download image </button>
     </div>
-    <canvas id="photo" v-show="imgUrl"></canvas>
-    <video id="me" class="selfie"></video>
+    <div class="stream"><video id="output" class="selfie"></video>
+    <canvas id="photo" v-show="imgUrl"></canvas></div>
+    
     <Settings :imgUrl="imgUrl" />
+    <a class="download" id="download"></a>
+    
   </div>
 </template>
 
@@ -35,7 +38,7 @@ export default {
         this.stream = await navigator.mediaDevices.getUserMedia({
           video: true
         });
-        const videoElem = document.querySelector("#me");
+        const videoElem = document.querySelector("#output");
         videoElem.srcObject = this.stream;
         videoElem.addEventListener("loadedmetadata", () => {
           videoElem.play();
@@ -75,25 +78,16 @@ export default {
         this.renderCaman("#photo", this.imgUrl);
       }
     },
-    downloadImg() {
-      this.Caman("#photo", this.imgUrl, function() {
-        this.revert();
-        this.brightness(document.querySelector('#brightness'));
-        this.contrast(document.querySelector('#contrast'));
-        this.saturation(document.querySelector('#saturation'));
-        this.vibrance(document.querySelector('#vibrance'));
-        this.exposure(document.querySelector('#exposure'));
-
-        this.render(function () {
-        this.save("FilterdImg.png");
-        });
-      });
-
+     imageDown() {
+      const canvas = document.querySelector("canvas");
+      const img = canvas
+        .toDataURL("image/png")
+        .replace("image/png", "image/octet-stream");
       const link = document.getElementById("download");
-      link.setAttribute("download", "FilterdImg.png");
-      link.setAttribute("href", "FilterdImg.png");
+      link.setAttribute("download", "HeresyIMG.png");
+      link.setAttribute("href", img);
       link.click();
-    },
+    }
   },
      
 
@@ -106,6 +100,8 @@ export default {
 button {
   width: 200px;
   height: 45px;
+  padding: 1rem;
+  margin: 20px;
   font-family: "Fira Code";
   font-size: 11px;
   text-transform: uppercase;
@@ -123,11 +119,11 @@ button {
   &:active,&:focus {
     background-color: #2ee59d;
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-    color: #fff;
+    color: #000;
     transform: translateY(-7px);
   }
 }
-#me {
+#output {
   width: 300px;
 
   margin: 1rem auto;
@@ -156,7 +152,7 @@ canvas[style] {
     margin: auto;
   }
 
-  #me {
+  #output {
     width: 700px;
     height: 500px;
   }
@@ -168,10 +164,12 @@ canvas[style] {
 }
 
 @media screen and (min-width: 1024px) {
-  #me {
+  #output {
     width: 800px;
     height: 400px;
     margin: 2rem;
   }
+
+
 }
 </style>

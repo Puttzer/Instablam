@@ -49,7 +49,7 @@ self.addEventListener("fetch", (evt) => {
   }
 });
 
-//LListening for Pushnotifications and logs out if successfully sent
+//Listening for Pushnotifications and logs out if successfully sent
 self.addEventListener("push", (event) => {
   console.log("Push notification Sent!");
   if (event.data) {
