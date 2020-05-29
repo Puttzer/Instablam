@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="button" tabindex="0">
-      <button id="test" class="controll" tabindex="0">Allow notifications</button>
-      <button @click="captureImage" class="controll">Take a screenshoot!</button>
+      <button id="test" class="butt" tabindex="0">Accenpt the use of push notifications</button>
+      <button @click="captureImage" class="butt">Take a photo of yourself!</button>
     </div>
     <canvas id="photo" v-show="imgUrl"></canvas>
-    <video id="me" class="camera"></video>
+    <video id="me" class="selfie"></video>
     <!-- <Filters :imgUrl="imgUrl" /> -->
   </div>
 </template>
@@ -72,17 +72,27 @@ export default {
 
 <style lang="scss" >
 button {
-  font-family: "Roboto Mono", monospace;
-  padding: 1rem;
+  
   width: 200px;
-  margin: 0.5rem;
-  border-radius: 5px;
-  color: black;
-  background: lightgrey;
-  font-size: 14px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
   &:hover {
-    background: white;
-    color: black;
+    background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
   }
 }
 #me {
@@ -97,28 +107,13 @@ canvas[style] {
   margin: auto;
 }
 
-// .filters {
-//   width: 100%;
-//   margin: auto;
-//   padding: 1rem;
-//   label {
-//     margin: auto;
-//     padding: 1.5rem;
-//   }
-//   filter {
-//     width: 200px;
-//   }
-// }
+
 @media screen and (min-width: 768px) {
   button {
     margin: auto;
+    
   }
-//   .controll {
-//     font-size: 30px;
-//     width: 100%;
-//     padding: 1rem;
-//     margin: auto;
-//   }
+  
   #me {
     width: 700px;
     height: 500px;
