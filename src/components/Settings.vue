@@ -141,11 +141,10 @@ export default {
 }
 @media screen and (min-width: 768px) {
   .filters {
-    width: 100%;
+    width: 86%;
   }
   input {
     width: 500px;
-    justify-items: center;
   }
   
 }

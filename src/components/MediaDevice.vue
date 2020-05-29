@@ -1,13 +1,17 @@
 <template>
   <div>
+
     <div class="button" >
       <button type="button" id="test" class="butt" >Notifications On/Off</button>
       <button @click="captureImage" class="butt">Take a Photo!</button>
       <button @click="clearButton" class="butt">Clear applied filters</button>
       <button @click="imageDown" class="butt" >Download image </button>
-    </div>
-    <div class="stream"><video id="output" class="selfie"></video>
-    <canvas id="photo" v-show="imgUrl"></canvas></div>
+     </div>
+
+      
+       <video id="output" class="selfie"></video>
+      <canvas id="photo" v-show="imgUrl"></canvas> 
+    
     
     <Settings :imgUrl="imgUrl" />
     <a class="download" id="download"></a>
@@ -123,11 +127,7 @@ button {
     transform: translateY(-7px);
   }
 }
-#output {
-  width: 300px;
 
-  margin: 1rem auto;
-}
 
 canvas[style] {
   max-width: 300px;
@@ -145,31 +145,41 @@ canvas[style] {
     color: #fff;
     transform: translateY(-7px);
   }
-
-    
+  
+    canvas {
+    margin: auto;
+    max-width: 800px !important;
+    max-height: 500px !important;
+  }
   }
   .butt {
     margin: auto;
   }
 
-  #output {
-    width: 700px;
-    height: 500px;
-  }
+  
+  
   canvas {
     margin: auto;
     max-width: 800px !important;
-    max-height: 500px !important;
+    max-height: 400px !important;
   }
 }
 
 @media screen and (min-width: 1024px) {
+  // #output {
+  //   width: 800px;
+  //   height: 400px;
+  //   margin: 2rem;
+  // }
   #output {
-    width: 800px;
-    height: 400px;
-    margin: 2rem;
+    width: 700px;
+    height: 500px;
   }
 
-
+  canvas {
+    margin: auto;
+    max-width: 800px !important;
+    max-height: 400px !important;
+  }
 }
 </style>
