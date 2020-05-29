@@ -46,7 +46,7 @@ export default () => {
 
         //  seeing " Uncaught TypeError: Cannot read property 'addEventListener' of null " in console, Will look into at a later date!
         document.querySelector('#test').addEventListener('click', (event) => {
-        event.srcElement.disabled = true;
+        // event.srcElement.disabled = true;
 
         //Hämtar eventuell subscription och ifall vi har en så gör vi en unsubscribe
         //Ifall vi inte har subscription så börjar vi prenumerera på notiser och skickar till servern

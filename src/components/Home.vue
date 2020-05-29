@@ -4,14 +4,14 @@
     <div class="main">
       <img src="../../public/img/icons/photography-256.png" class="selfie" alt="">
 
-      <div class="uppertex">
+      <div class="uppertext">
       <h1>Oh hello there!</h1>
-      <h3>Here you can take a quick picture for any of your suitable needs!</h3>
+      <h3>Here you can take a quick picture of yourself for any of your needs!</h3>
       </div>
       
       <MediaDevice/>
     </div>
-    
+
   </div>
 </template>
 

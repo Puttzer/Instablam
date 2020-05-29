@@ -4,6 +4,7 @@ const assets = ["/", "/index.html", "/offline.html"];
 
 // This part installs the service worker
 self.addEventListener("install", (evt) => {
+  
   console.log(self);
   self.skipWaiting();
   console.log(evt);
@@ -15,17 +16,22 @@ self.addEventListener("install", (evt) => {
   );
 });
 // Activating the Service worker
+// eslint gib error here! added a console log MEMBER THIS!
 self.addEventListener("activate", (event) => {
+  console.log(event)
   self.skipWaiting();
   console.log("SW activated at: ", new Date().toLocaleTimeString());
 });
 // Fetching the Service Worker
 self.addEventListener("fetch", (evt) => {
+  if (evt.request.cache === 'only-if-cached' && evt.request.mode !== 'same-origin') {
+    return;
+  }
   console.log(evt.request.url);
   if (!navigator.onLine) {
     evt.respondWith(
       caches.match(evt.request).then((response) => {
-        console.log("RESPONSE: ", response);
+        // console.log("RESPONSE: ", response);
         if (response) {
           return response;
         } else {

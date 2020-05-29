@@ -4,28 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instablam</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 </head>
 <body>  
+
   <div class="wrapper"><h1>Ouch</h1>
-        <h3>You seem to be without an internet connection, Valve please fix.</h3></div>
-        
+        <h3>You seem to be without an internet connection, Valve please fix.</h3>
+      </div>
+        <img src="./img/icons/error.png"  alt="error">
 </body>
 </html>
 <style>
+  * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
   body{
+    display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
     background-color: #535353
   }
   .wrapper{
     color: #2EE59D;
     font-family: 'Fira Code';
   }
-    /* h1{
-    
-    font-family: 'Fira Code';
-  }
 
-  h3{
-    
-    font-family: 'Fira Code';
-  } */
+  img{
+        width: 100px;
+        height: 100px;
+        margin: 3rem 3rem auto;
+      }
+   
 </style>

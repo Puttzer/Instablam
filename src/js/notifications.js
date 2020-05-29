@@ -8,7 +8,7 @@ function requestNotificationPermission() {
 }
 
 function createNotification(arbiter) {
-    const icon = 'images/icons/shakespeare-apple-touch-icon.png';
+    const icon = '@/public/img/icons/Camera-rol-128.png';
     const play = arbiter.play;
 
     const notification = new Notification('New Pushnotification', { body: play, icon: icon });
